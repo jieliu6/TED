@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import pprint
+# import pprint
 
 def readNodes(filename):
     # all input files should be placed in data folder
@@ -43,6 +43,6 @@ def processEdges(node1, node2, edgeType, n):
         edges[node2[i]][edgeType[i]].append(node1[i])
     return edges
 
-readNodes('nodes.txt')
-pprint.pprint(readEdges('edges.txt'))
+# readNodes('nodes.txt')
+# pprint.pprint(readEdges('edges.txt'))
 
