@@ -1,13 +1,13 @@
 import pandas as pd
 import numpy as np
-# import pprint
+#import pprint
 
 def readNodes(filename):
     # all input files should be placed in data folder
     file = './data/' + filename
     # input has no headers
     node = pd.read_csv(file, sep=',', header=None, dtype = np.float32)
-    print(node[0].tolist())
+    # print(node[0].tolist())
     return node[0].tolist()
 
 def readEdges(filename):
@@ -30,8 +30,12 @@ def addNewNode(edgeTypes):
 
 def processEdges(node1, node2, edgeType, n):
     edges = {}
+    # edge types
     typeList = np.unique(edgeType)
+    # return edgeType:[node paris]
+    edgeList = {i:[] for i in edgeType}
     for i in range(n):
+        node1[i], node2[i]  = int(node1[i]), int(node2[i])
         # add new node to the graph
         if node1[i] == node2[i]:
             raise ValueError('Invalid Graph')
@@ -41,8 +45,10 @@ def processEdges(node1, node2, edgeType, n):
         if node2[i] not in edges.keys():
             edges[node2[i]] = addNewNode(typeList)
         edges[node2[i]][edgeType[i]].append(node1[i])
-    return edges
+        if (node1[i] < node2[i]):
+            edgeList[edgeType[i]].append((node1[i], node2[i]))
+    return edges, typeList, edgeList
 
-# readNodes('nodes.txt')
-# pprint.pprint(readEdges('edges.txt'))
+#readNodes('nodes.txt')
+#pprint.pprint(readEdges('edges.txt'))
 
