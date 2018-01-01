@@ -118,7 +118,7 @@ def EM(graph, x_s, edgeList, typeList, nparticle, n, mu, pi, epislon, option):
     t = 0
     while True:
         theta = EStep(graph, x_s, theta, phi, mu, pi, option)
-        new_mu, new_phi, new_pi = MStep(graph, theta, x_s, phi, edgeList, particles, nparticle, n, mu, pi, t)
+        new_mu, new_phi, new_pi = MStep(graph, theta, x_s, phi, edgeList, particles, nparticle, n, pi, mu, t)
         if converge([new_mu, new_pi] + list(new_phi.values()), [mu, new_pi] + list(phi.values()), epislon):
             mu = new_mu
             phi = new_phi
