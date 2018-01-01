@@ -129,6 +129,12 @@ def EM(graph, x_s, edgeList, typeList, nparticle, n, mu, pi, epislon, option):
             phi = new_phi
             pi = new_pi
             t += 1
+        '''
+        if (t % 100  ==0):
+            print(str(t) + ":")
+            print(phi, mu, pi)
+            print("\n")
+        '''
     theta = EStep(graph, x_s, theta, phi, mu, pi, option)
     return theta, phi, mu, pi
 
